@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react'
 import { Reveal } from './ui/Reveal'
+import { LazyVideo } from './ui/LazyVideo'
 
 const PILLARS = [
   'Senior strategists on every account — no junior hand-offs',
@@ -16,16 +17,11 @@ export function About() {
           <div className="relative">
             <div className="glass-strong relative overflow-hidden rounded-[2rem] p-2">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-ink-700 to-ink-950">
-                <video
-                  className="h-full w-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+                <LazyVideo
+                  src="/media/dubai-exec.mp4"
                   poster="/media/about.jpg"
-                >
-                  <source src="/media/dubai-exec.mp4" type="video/mp4" />
-                </video>
+                  className="absolute inset-0"
+                />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
               </div>
             </div>

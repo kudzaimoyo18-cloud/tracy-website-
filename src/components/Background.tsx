@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion'
-
 /**
- * Fixed, full-viewport ambient layer: drifting ember orbs + faint grid + grain.
- * Sits behind all content (z-0) and never intercepts pointer events.
+ * Static ambient layer: faint grid + soft ember glows.
+ * Intentionally NOT animated — animating large blurred elements forces
+ * full-viewport re-rasterization every frame and tanks desktop performance.
+ * Rendered once, composited cheaply, never repaints.
  */
 export function Background() {
   return (
@@ -19,28 +19,19 @@ export function Background() {
         }}
       />
 
-      {/* Drifting orbs */}
-      <motion.div
-        className="absolute -left-40 top-[-10%] h-[40rem] w-[40rem] rounded-full blur-[120px]"
-        style={{ background: 'radial-gradient(circle, rgba(255,106,0,0.30), transparent 65%)' }}
-        animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Soft ember glows (static gradients, no blur filter, no animation) */}
+      <div
+        className="absolute -left-[10%] top-[-5%] h-[36rem] w-[36rem] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(255,106,0,0.20), transparent 62%)' }}
       />
-      <motion.div
-        className="absolute right-[-10%] top-[20%] h-[34rem] w-[34rem] rounded-full blur-[130px]"
-        style={{ background: 'radial-gradient(circle, rgba(255,138,0,0.22), transparent 65%)' }}
-        animate={{ x: [0, -60, 0], y: [0, 60, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        className="absolute right-[-12%] top-[22%] h-[32rem] w-[32rem] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(255,138,0,0.14), transparent 62%)' }}
       />
-      <motion.div
-        className="absolute bottom-[-15%] left-[30%] h-[36rem] w-[36rem] rounded-full blur-[140px]"
-        style={{ background: 'radial-gradient(circle, rgba(120,60,255,0.16), transparent 65%)' }}
-        animate={{ x: [0, 50, 0], y: [0, -40, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        className="absolute bottom-[-12%] left-[28%] h-[34rem] w-[34rem] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(120,60,255,0.10), transparent 62%)' }}
       />
-
-      {/* Grain */}
-      <div className="noise absolute inset-0 opacity-[0.04] mix-blend-overlay" />
     </div>
   )
 }

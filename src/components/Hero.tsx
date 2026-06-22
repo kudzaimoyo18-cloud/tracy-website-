@@ -12,6 +12,7 @@ export function Hero() {
           muted
           loop
           playsInline
+          preload="metadata"
           poster="/media/dubai-hero.jpg"
         >
           <source src="/media/dubai-hero.mp4" type="video/mp4" />
@@ -32,22 +33,11 @@ export function Hero() {
       <div className="relative z-10 flex min-h-[100svh] items-center pt-28 md:pt-24">
         <div className="shell px-6 md:px-10">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="eyebrow">
-                <span className="h-1.5 w-1.5 rounded-full bg-ember-400 animate-glow-pulse" />
-                Dubai · Growth Marketing Agency
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl"
+              className="font-display text-5xl font-semibold leading-[1.04] tracking-tight md:text-7xl"
             >
               <span className="text-gradient">Growth,</span>{' '}
               <span className="text-ember">engineered</span>{' '}
