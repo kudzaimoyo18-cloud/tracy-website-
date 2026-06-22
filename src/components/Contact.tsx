@@ -1,0 +1,170 @@
+import { useState } from 'react'
+import { ArrowRight, Mail, MapPin, Phone, CheckCircle2 } from 'lucide-react'
+import { Reveal } from './ui/Reveal'
+
+const BUDGETS = ['$2k – $5k / mo', '$5k – $10k / mo', '$10k – $25k / mo', '$25k+ / mo']
+
+const DETAILS = [
+  { icon: Mail, label: 'Email', value: 'hello@wangomarketing.com', href: 'mailto:hello@wangomarketing.com' },
+  { icon: Phone, label: 'Phone', value: '+971 4 000 0000', href: 'tel:+97140000000' },
+  { icon: MapPin, label: 'Studio', value: 'Business Bay, Dubai, UAE', href: '#' },
+]
+
+export function Contact() {
+  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState({ name: '', email: '', company: '', budget: BUDGETS[1], message: '' })
+
+  function update(key: keyof typeof form, value: string) {
+    setForm((f) => ({ ...f, [key]: value }))
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    const subject = encodeURIComponent(`New project enquiry — ${form.company || form.name}`)
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\n${form.message}`,
+    )
+    window.location.href = `mailto:hello@wangomarketing.com?subject=${subject}&body=${body}`
+    setSent(true)
+  }
+
+  return (
+    <section id="contact" className="section-pad relative z-10">
+      <div className="shell">
+        <div className="glass-strong relative overflow-hidden rounded-[2.5rem] p-6 md:p-12">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-50"
+            style={{
+              background:
+                'radial-gradient(50% 80% at 90% 10%, rgba(255,106,0,0.22), transparent 60%), radial-gradient(40% 60% at 0% 100%, rgba(255,138,0,0.14), transparent 60%)',
+            }}
+          />
+
+          <div className="relative grid gap-10 lg:grid-cols-2">
+            {/* Left: pitch + details */}
+            <div>
+              <Reveal>
+                <span className="eyebrow">Let's talk</span>
+                <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+                  Ready to become <span className="text-ember">the brand everyone watches?</span>
+                </h2>
+                <p className="mt-5 max-w-md text-lg text-white/65">
+                  Book a free 30-minute strategy call. We'll pressure-test your funnel and show you
+                  exactly where the next wave of growth is hiding.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 space-y-3">
+                {DETAILS.map((d, i) => {
+                  const Icon = d.icon
+                  return (
+                    <Reveal key={d.label} delay={i * 0.06}>
+                      <a
+                        href={d.href}
+                        className="glass-soft group flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-white/[0.07]"
+                      >
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-ember-500/15 text-ember-300 ring-1 ring-ember-500/30">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span>
+                          <span className="block text-xs uppercase tracking-widest text-white/40">
+                            {d.label}
+                          </span>
+                          <span className="font-medium text-white/90">{d.value}</span>
+                        </span>
+                      </a>
+                    </Reveal>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Right: form */}
+            <Reveal delay={0.1}>
+              <div className="glass rounded-3xl p-6 md:p-8">
+                {sent ? (
+                  <div className="flex h-full min-h-[20rem] flex-col items-center justify-center text-center">
+                    <CheckCircle2 className="h-14 w-14 text-ember-400" />
+                    <h3 className="mt-4 font-display text-2xl font-semibold">Almost there!</h3>
+                    <p className="mt-2 max-w-xs text-white/60">
+                      Your email client is opening with the details. Hit send and we'll reply within
+                      one business day.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <Field label="Full name">
+                      <input
+                        required
+                        value={form.name}
+                        onChange={(e) => update('name', e.target.value)}
+                        placeholder="Jane Doe"
+                        className="input"
+                      />
+                    </Field>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <Field label="Work email">
+                        <input
+                          required
+                          type="email"
+                          value={form.email}
+                          onChange={(e) => update('email', e.target.value)}
+                          placeholder="jane@brand.com"
+                          className="input"
+                        />
+                      </Field>
+                      <Field label="Company">
+                        <input
+                          value={form.company}
+                          onChange={(e) => update('company', e.target.value)}
+                          placeholder="Brand Co."
+                          className="input"
+                        />
+                      </Field>
+                    </div>
+                    <Field label="Monthly budget">
+                      <select
+                        value={form.budget}
+                        onChange={(e) => update('budget', e.target.value)}
+                        className="input"
+                      >
+                        {BUDGETS.map((b) => (
+                          <option key={b} value={b} className="bg-ink-900">
+                            {b}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="What are you trying to grow?">
+                      <textarea
+                        value={form.message}
+                        onChange={(e) => update('message', e.target.value)}
+                        rows={4}
+                        placeholder="A quick sentence about your goals…"
+                        className="input resize-none"
+                      />
+                    </Field>
+                    <button type="submit" className="btn-ember w-full">
+                      Send enquiry <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </form>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-xs font-medium uppercase tracking-widest text-white/45">
+        {label}
+      </span>
+      {children}
+    </label>
+  )
+}

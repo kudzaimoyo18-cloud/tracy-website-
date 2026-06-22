@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-950 text-white/90 font-sans antialiased;
+    background-image:
+      radial-gradient(70% 50% at 15% -5%, rgba(255, 106, 0, 0.16), transparent 60%),
+      radial-gradient(50% 40% at 95% 5%, rgba(255, 138, 0, 0.10), transparent 55%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-ember-500/40 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #07070b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff6a00, #b84800);
+    border-radius: 999px;
+    border: 2px solid #07070b;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/[0.045] backdrop-blur-xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-soft {
+    @apply border border-white/[0.08] bg-white/[0.025] backdrop-blur-md;
+  }
+
+  .glass-strong {
+    @apply border border-white/15 bg-white/[0.07] backdrop-blur-2xl;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-ring {
+    position: relative;
+  }
+  .glass-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255, 138, 0, 0.55), rgba(255, 255, 255, 0.06) 40%, transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white to-white/60 bg-clip-text text-transparent;
+  }
+
+  .text-ember {
+    @apply bg-gradient-to-br from-ember-300 via-ember-500 to-ember-600 bg-clip-text text-transparent;
+  }
+
+  .btn-ember {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, #ff8a00, #ff4d00);
+    box-shadow: 0 10px 30px -8px rgba(255, 106, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .btn-ember:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 44px -10px rgba(255, 106, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-glass {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-3.5 font-semibold text-white/90 backdrop-blur-xl transition-all duration-300;
+  }
+  .btn-glass:hover {
+    @apply border-white/30 bg-white/[0.08];
+    transform: translateY(-2px);
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-ember-500/30 bg-ember-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-ember-200;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200;
+  }
+  .input:focus {
+    @apply border-ember-500/50 bg-white/[0.05];
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.12);
+  }
+
+  .section-pad {
+    @apply px-6 py-24 md:px-10 md:py-32;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-7xl;
+  }
+}
+
+@layer utilities {
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
