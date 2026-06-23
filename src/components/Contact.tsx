@@ -6,7 +6,7 @@ const BUDGETS = ['$2k – $5k / mo', '$5k – $10k / mo', '$10k – $25k / mo', 
 
 const DETAILS = [
   { icon: Mail, label: 'Email', value: 'hello@wangomarketing.com', href: 'mailto:hello@wangomarketing.com' },
-  { icon: Phone, label: 'Phone', value: '+971 4 000 0000', href: 'tel:+97140000000' },
+  { icon: Phone, label: 'Phone', value: '+971 52 767 5035', href: 'tel:+971527675035' },
   { icon: MapPin, label: 'Studio', value: 'Business Bay, Dubai, UAE', href: '#' },
 ]
 

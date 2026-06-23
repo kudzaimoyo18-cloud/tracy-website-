@@ -12,35 +12,42 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
+function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z" />
+      <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" />
     </svg>
   )
 }
 
-function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
+function PhoneIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M23 12s0-3.3-.42-4.88a2.55 2.55 0 0 0-1.8-1.8C19.2 4.9 12 4.9 12 4.9s-7.2 0-8.78.42a2.55 2.55 0 0 0-1.8 1.8C1 8.7 1 12 1 12s0 3.3.42 4.88c.23.86.9 1.53 1.8 1.8C4.8 19.1 12 19.1 12 19.1s7.2 0 8.78-.42a2.55 2.55 0 0 0 1.8-1.8C23 15.3 23 12 23 12zM9.75 15.02V8.98L15.5 12z" />
-    </svg>
-  )
-}
-
-function XIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   )
 }
 
 const SOCIALS = [
-  { icon: InstagramIcon, href: '#', label: 'Instagram' },
-  { icon: LinkedinIcon, href: '#', label: 'LinkedIn' },
-  { icon: YoutubeIcon, href: '#', label: 'YouTube' },
-  { icon: XIcon, href: '#', label: 'X' },
+  {
+    icon: InstagramIcon,
+    href: 'https://www.instagram.com/wangomarketing?igsh=a3Fhc28xNGVyeXJj&utm_source=qr',
+    label: 'Instagram',
+  },
+  {
+    icon: FacebookIcon,
+    href: 'https://www.facebook.com/share/18f8NA8hjF/?mibextid=wwXIfr',
+    label: 'Facebook',
+  },
+  { icon: PhoneIcon, href: 'tel:+971527675035', label: 'Call +971 52 767 5035' },
 ]
 
 export function Footer() {
@@ -63,11 +70,13 @@ export function Footer() {
               <div className="mt-6 flex gap-3">
                 {SOCIALS.map((s) => {
                   const Icon = s.icon
+                  const external = s.href.startsWith('http')
                   return (
                     <a
                       key={s.label}
                       href={s.href}
                       aria-label={s.label}
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="glass flex h-10 w-10 items-center justify-center rounded-xl text-white/70 transition-colors hover:text-ember-300"
                     >
                       <Icon className="h-5 w-5" />
@@ -113,7 +122,15 @@ export function Footer() {
 
           <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row">
             <p>© {new Date().getFullYear()} Wango Marketing. All rights reserved.</p>
-            <p>Built in Dubai · Running campaigns worldwide</p>
+            <div className="flex items-center gap-5">
+              <a
+                href="/privacy-policy.html"
+                className="transition-colors hover:text-white"
+              >
+                Privacy Policy
+              </a>
+              <p>Built in Dubai · Running campaigns worldwide</p>
+            </div>
           </div>
         </div>
       </div>
