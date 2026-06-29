@@ -137,27 +137,6 @@ export const WORK: Work[] = [
     result: 'cost per acquisition',
     image: '/media/work-3.jpg',
   },
-  {
-    brand: 'Atlas Activewear',
-    sector: 'E-commerce',
-    metric: '4.7x',
-    result: 'return on ad spend',
-    image: '/media/work-4.jpg',
-  },
-  {
-    brand: 'Marina Aesthetics',
-    sector: 'Beauty · Healthcare',
-    metric: '+180%',
-    result: 'booked consultations',
-    image: '/media/work-5.jpg',
-  },
-  {
-    brand: 'Nomad Travel Co',
-    sector: 'Travel',
-    metric: '#1',
-    result: 'search ranking in 9 months',
-    image: '/media/work-6.jpg',
-  },
 ]
 
 export type Testimonial = {
