@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, Mail, Phone, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Mail, MapPin, Phone, CheckCircle2 } from 'lucide-react'
 import { Reveal } from './ui/Reveal'
 
 const BUDGETS = ['$2k – $5k / mo', '$5k – $10k / mo', '$10k – $25k / mo', '$25k+ / mo']
@@ -28,6 +28,13 @@ const DETAILS: Detail[] = [
     label: 'WhatsApp',
     value: '+971 52 767 5035',
     href: 'https://wa.me/971527675035',
+    external: true,
+  },
+  {
+    icon: MapPin,
+    label: 'Studio',
+    value: 'Dubai Production City, Dubai, UAE',
+    href: 'https://www.google.com/maps/search/?api=1&query=Dubai%20Production%20City%2C%20Dubai%2C%20UAE',
     external: true,
   },
 ]

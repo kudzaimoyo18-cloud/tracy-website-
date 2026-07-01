@@ -133,17 +133,23 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row">
-            <p>© {new Date().getFullYear()} Wango Marketing. All rights reserved.</p>
-            <div className="flex items-center gap-5">
-              <a
-                href="/privacy-policy.html"
-                className="transition-colors hover:text-white"
-              >
-                Privacy Policy
-              </a>
-              <p>Built in Dubai · Running campaigns worldwide</p>
+          <div className="mt-10 border-t border-white/10 pt-6 text-sm text-white/45">
+            <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+              <p>© {new Date().getFullYear()} Wango Marketing. All rights reserved.</p>
+              <div className="flex items-center gap-5">
+                <a
+                  href="/privacy-policy.html"
+                  className="transition-colors hover:text-white"
+                >
+                  Privacy Policy
+                </a>
+                <p>Built in Dubai · Running campaigns worldwide</p>
+              </div>
             </div>
+            <p className="mt-4 text-center text-xs text-white/35 md:text-left">
+              Wango Marketing operates under the trade licence of Sigmasix Events Management LLC ·
+              Dubai Production City, Dubai, UAE.
+            </p>
           </div>
         </div>
       </div>
